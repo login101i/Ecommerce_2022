@@ -1,0 +1,21 @@
+.header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo-container {
+    height: 50px;
+    width: 100%;
+  }
+  .options {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    .option {
+      font-size: 22px;
+      text-transform: uppercase;
+      margin: 0px 20px;
+    }
+  }
+}

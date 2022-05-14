@@ -27,17 +27,12 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data()
-              }
-            },
-            () => {
-              console.log(this.state);
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
             }
-          );
+          });
         });
       } else {
         this.setState({ currentUser: userAuth });
@@ -59,7 +54,6 @@ class App extends React.Component {
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/shop" element={<ShopPage />} />
             <Route exact path="/sign-in" element={<SignInAndSignUpPage />} />
-
           </Routes>
         </BrowserRouter>
       </div>

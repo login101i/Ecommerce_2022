@@ -43,6 +43,7 @@ export class SignUp extends React.Component {
         password: "",
         confirmPassword: ""
       });
+      alert("Now you can successfully signIn");
     } catch (error) {
       console.error(error);
     }

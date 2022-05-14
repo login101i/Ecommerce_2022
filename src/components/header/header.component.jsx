@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../asssets/crown.svg";
 import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+
 export const Header = ({ currentUser }) => {
   return (
     <div className="header">
@@ -30,3 +32,10 @@ export const Header = ({ currentUser }) => {
     </div>
   );
 };
+
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
+});
+
+export const HeaderHOC = connect(mapStateToProps)(Header);

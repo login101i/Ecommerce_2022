@@ -4,10 +4,7 @@ import { HomePage } from "./pages/homepage.component";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-
-const HatsPage = () => {
-  return <div>Hello from HatsPage</div>;
-};
+import { ShopPage } from "./pages/shop/shop.component.jsx";
 
 class App extends Component {
   render() {
@@ -16,7 +13,7 @@ class App extends Component {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route path='/hats' component={<HatsPage/>} />
+            <Route exact path="/shopx" element={<ShopPage />} />
           </Routes>
         </BrowserRouter>
       </div>

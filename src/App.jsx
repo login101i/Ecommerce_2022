@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HomePage } from "./pages/home/homepage.component";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.css";
@@ -12,8 +12,6 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 
 class App extends Component {
-  
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -30,7 +28,7 @@ class App extends Component {
           });
         });
       } else {
-        this.setState({ currentUser: userAuth });
+        setCurrentUser({ userAuth });
       }
     });
   }
@@ -48,7 +46,17 @@ class App extends Component {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/shop" element={<ShopPage />} />
-            <Route exact path="/sign-in" element={<SignInAndSignUpPage />} />
+            <Route
+              exact
+              path="/signin"
+              element={
+                this.props.currentUser !== null ? (
+                  <Navigate to="/" />
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>

@@ -5,7 +5,7 @@ import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 
-export const Header = ({ currentUser }) => {
+export const Header = ({ currentUser={} }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -24,9 +24,11 @@ export const Header = ({ currentUser }) => {
             Sign Out
           </div>
         ) : (
-          <div className="option" onClick={() => auth.signOut()}>
-            Sign In
-          </div>
+          <Link to="/signin" className="option">
+            <div className="option" onClick={() => auth.signOut()}>
+              Sign In
+            </div>
+          </Link>
         )}
       </div>
     </div>

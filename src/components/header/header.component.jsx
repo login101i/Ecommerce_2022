@@ -5,7 +5,7 @@ import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { CartIconHOC } from "../cart-icon/cart-icon";
-import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
+import { CartDropdownHOC } from "../cart-dropdown/cart-dropdown.component";
 
 export const Header = ({ currentUser, hidden }) => {
 
@@ -38,7 +38,7 @@ export const Header = ({ currentUser, hidden }) => {
           <CartIconHOC />
         </div>
       </div>
-      {hidden ? null : <CartDropdown />}
+      {hidden ? null : <CartDropdownHOC />}
     </div>
   );
 };

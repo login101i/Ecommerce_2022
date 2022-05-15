@@ -1,0 +1,24 @@
+.cart-item {
+  height: 80px;
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+
+  img {
+    width: 40%;
+  }
+  .item-details {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 8px;
+   align-items: flex-end;
+    .name {
+      font-size: 17px;
+    }
+    .price {
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+}

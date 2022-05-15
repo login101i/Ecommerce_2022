@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { withRouter  } from "react-router-dom";
 
 import "./menu-item.styles.scss";
 
@@ -11,10 +11,9 @@ export const MenuItem = ({
   linkUrl,
   match
 }) => {
-  const navigate = useNavigate();
 
   return (
-    <div className={`${size} menu-item`} onClick={() => navigate(linkUrl)}>
+    <div className={`${size} menu-item`} onClick={() => withRouter (linkUrl)}>
       <div
         className="background-image"
         style={{

@@ -4,8 +4,19 @@ import { ReactComponent as Logo } from "../../asssets/crown.svg";
 import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
+import { CartIconHOC } from "../cart-icon/cart-icon";
+import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
 
-export const Header = ({ currentUser={} }) => {
+export const Header = ({ currentUser, hidden }) => {
+  console.log(
+    "🚀 ~ file: header.component.jsx ~ line 11 ~ Header ~ hidden",
+    hidden
+  );
+  console.log(
+    "🚀 ~ file: header.component.jsx ~ line 11 ~ Header ~ currentUser",
+    currentUser
+  );
+
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -19,25 +30,33 @@ export const Header = ({ currentUser={} }) => {
         <Link to="/shop" className="option">
           Shop
         </Link>
-        {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
-            Sign Out
-          </div>
-        ) : (
-          <Link to="/signin" className="option">
+        {currentUser.userAuth!==null ? (
+          <Link to="/" className="option">
             <div className="option" onClick={() => auth.signOut()}>
-              Sign In
+              Sign Out
             </div>
           </Link>
+        ) : (
+          <Link to="/signin" className="option">
+            <div className="option">Sign In</div>
+          </Link>
         )}
+        <div className="option">
+          <CartIconHOC />
+        </div>
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
-
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+  hidden: state.cart.hidden
 });
+
+// const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+//   currentUser,
+//   hidden
+// });
 
 export const HeaderHOC = connect(mapStateToProps)(Header);

@@ -11,11 +11,14 @@
   .options {
     display: flex;
     justify-content: flex-end;
-    width: 80%;
+    width: 90%;
+
     .option {
       font-size: 22px;
       text-transform: uppercase;
       margin: 0px 20px;
+      display:flex;
+      align-items: center;
     }
   }
 }

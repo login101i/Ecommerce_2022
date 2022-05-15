@@ -1,14 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 import { ReactComponent as Logo } from "../../asssets/crown.svg";
 import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { CartIconHOC } from "../cart-icon/cart-icon";
 import { CartDropdownHOC } from "../cart-dropdown/cart-dropdown.component";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 export const Header = ({ currentUser, hidden }) => {
-
+  console.log(
+    "🚀 ~ file: header.component.jsx ~ line 14 ~ Header ~ currentUser",
+    currentUser
+  );
 
   return (
     <div className="header">
@@ -24,14 +30,12 @@ export const Header = ({ currentUser, hidden }) => {
           Shop
         </Link>
         {currentUser ? (
-          <Link to="/" className="option">
-            <div className="option" onClick={() => auth.signOut()}>
-              Sign Out
-            </div>
-          </Link>
+          <div className="option" onClick={() => auth.signOut()}>
+            SIGN OUT
+          </div>
         ) : (
-          <Link to="/signin" className="option">
-            <div className="option">Sign In</div>
+          <Link className="option" to="/signin">
+            SIGN IN
           </Link>
         )}
         <div className="option">
@@ -42,9 +46,9 @@ export const Header = ({ currentUser, hidden }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  hidden: state.cart.hidden
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 // const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({

@@ -8,14 +8,7 @@ import { CartIconHOC } from "../cart-icon/cart-icon";
 import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
 
 export const Header = ({ currentUser, hidden }) => {
-  console.log(
-    "🚀 ~ file: header.component.jsx ~ line 11 ~ Header ~ hidden",
-    hidden
-  );
-  console.log(
-    "🚀 ~ file: header.component.jsx ~ line 11 ~ Header ~ currentUser",
-    currentUser
-  );
+
 
   return (
     <div className="header">
@@ -30,7 +23,7 @@ export const Header = ({ currentUser, hidden }) => {
         <Link to="/shop" className="option">
           Shop
         </Link>
-        {currentUser.userAuth!==null ? (
+        {currentUser ? (
           <Link to="/" className="option">
             <div className="option" onClick={() => auth.signOut()}>
               Sign Out

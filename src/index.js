@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { AppHOC } from "./App";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <AppHOC />
+      <PersistGate persistor={persistor}>
+        <AppHOC />
+      </PersistGate>
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")

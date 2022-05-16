@@ -52,8 +52,8 @@ class App extends Component {
           <HeaderHOC />
 
           <Switch>
-            <Route exact path="/" component={HomePage } />
-            <Route exact path="/shop" component={ShopPage } />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/shop" component={ShopPage} />
             <Route
               exact
               path="/signin"

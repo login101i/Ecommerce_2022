@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 
 import "./collection.styles.scss";
 export const CollectionPage = ({ match, collection }) => {
-  console.log("🚀 ~---------------------------~ collections", collection);
+  console.log("🚀 ~---------------------------~ colle ctions", collection);
 
   const { title, items } = collection;
   return (

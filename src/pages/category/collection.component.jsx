@@ -8,9 +8,15 @@ import "./collection.styles.scss";
 export const CollectionPage = ({ match, collection }) => {
   console.log("🚀 ~---------------------------~ collections", collection);
 
+  const { title, items } = collection;
   return (
-    <div className="category">
-      <h2>Category Title</h2>
+    <div className="collection-page">
+      <h2 className="title">{title}</h2>
+      <div className="items">
+        {items.map((item) => (
+          <CollectionItemHOC key={item.id} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

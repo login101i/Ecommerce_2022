@@ -9,21 +9,23 @@ import "./App.css";
 import { ShopPage } from "./pages/shop/shop.component.jsx";
 import { HeaderHOC } from "./components/header/header.component";
 import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-upp/sign-in-sign-upp.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments
+} from "./firebase/firebase.utils";
 import { CheckoutHOC } from "./pages/checkout/checkout.component";
 
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { selectCollectionsForOverview } from "./redux/shop/shop-selector";
 
 class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
     const { setCurrentUser, currentUser } = this.props;
-    console.log(
-      "🚀 ~ file: App.jsx ~ line 22 ~ App ~ componentDidMount ~ currentUser",
-      currentUser
-    );
+   
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -37,6 +39,7 @@ class App extends Component {
         });
       } else {
         setCurrentUser(null);
+       
       }
     });
   }
@@ -53,7 +56,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route  path="/shop" component={ShopPage} />
+            <Route path="/shop" component={ShopPage} />
             <Route
               exact
               path="/signin"
@@ -75,7 +78,7 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

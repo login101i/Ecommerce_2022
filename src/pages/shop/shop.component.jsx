@@ -10,9 +10,17 @@ import {
 } from "../../firebase/firebase.utils";
 import "./shop.styles.scss";
 
-import { updateCollections } from "./shop.actions";
+import { updateCollections } from "../../redux/shop/shop.actions";
+import { WithSpinner } from "../../components/with-spinner/with-spinner.component";
+
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverviewHOC);
+const CollectionPageWithSpinner = WithSpinner(CollectionPageHOC);
 
 export class ShopPage extends Component {
+  state = {
+    loading: true
+  };
+
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -22,31 +30,34 @@ export class ShopPage extends Component {
     this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
       async (snapshot) => {
         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        updateCollections(collectionsMap);
         console.log(
-          "🚀 ~ file: shop.component.jsx ~ line 21 ~ ShopPage ~ this.unsubscribeFromSnapshot=collectionRef.onSnapshot ~ collectionsMap",
+          "🚀 ~ file: shop.component.jsx ~ line 26 ~ ShopPage ~ collectionsMap",
           collectionsMap
         );
+
+        updateCollections(collectionsMap);
+        this.setState({ loading: false });
       }
     );
   }
   render() {
     const { match } = this.props;
-    console.log(
-      "🚀 ~ file: shop.component.jsx ~ line 7 ~ ShopPage ~ match",
-      match
-    );
+    const { loading } = this.state;
 
     return (
       <div className="shop-page">
         <Route
           exact
           path={`${match.path}`}
-          component={CollectionsOverviewHOC}
+          render={(props) => (
+            <CollectionsOverviewWithSpinner isLoading={loading} {...props} />
+          )}
         />
         <Route
           path={`${match.path}/:collectionId`}
-          component={CollectionPageHOC}
+          render={(props) => (
+            <CollectionPageWithSpinner isLoading={loading} {...props} />
+          )}
         />
       </div>
     );

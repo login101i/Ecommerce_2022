@@ -1,6 +1,5 @@
 import { createSelector } from "reselect";
 
-
 const SelectShop = (state) => state.shop;
 
 export const SelectShopCollection = createSelector(
@@ -8,14 +7,14 @@ export const SelectShopCollection = createSelector(
   (shop) => shop.collections
 );
 
-export const selectCollection = collectionUrlParam =>
+export const selectCollection = (collectionUrlParam) =>
   createSelector(
     [SelectShopCollection],
-    collection => collection[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
   );
 
-  export const selectCollectionsForOverview = createSelector(
-    [SelectShopCollection],
-    collections => Object.keys(collections).map(key => collections[key])
-  );
-  
+export const selectCollectionsForOverview = createSelector(
+  [SelectShopCollection],
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
+);

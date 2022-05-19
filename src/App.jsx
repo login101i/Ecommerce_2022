@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import "./App.css";
-import { ShopPage } from "./pages/shop/shop.component.jsx";
+import { ShopHOC } from "./pages/shop/shop.component.jsx";
 import { HeaderHOC } from "./components/header/header.component";
 import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-upp/sign-in-sign-upp.component";
 import {
@@ -25,7 +25,6 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser, currentUser } = this.props;
-   
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -39,7 +38,6 @@ class App extends Component {
         });
       } else {
         setCurrentUser(null);
-       
       }
     });
   }
@@ -56,7 +54,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/shop" component={ShopPage} />
+            <Route path="/shop" component={ShopHOC} />
             <Route
               exact
               path="/signin"
@@ -78,7 +76,7 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -11,8 +11,6 @@ export const MenuItem = ({
   linkUrl,
   match
 }) => {
-  console.log(match.url);
-
   return (
     <div
       className={`${size} menu-item`}

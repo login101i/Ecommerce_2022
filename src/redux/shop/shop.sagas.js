@@ -14,12 +14,13 @@ import { ShopActionTypes } from "./shop.types";
 
 export function* fetchCollectionsAsync() {
   try {
-    const collectionRef = firestore.collection("collections");
+    const collectionRef = firestore.collection("collection");
     const snapshot = yield collectionRef.get();
     const collectionsMap = yield call(
       convertCollectionsSnapshotToMap,
       snapshot
     );
+
     yield put(fetchCollectionsSuccess(collectionsMap));
   } catch (error) {
     yield put(fetchCollectionsFailure(error.message));

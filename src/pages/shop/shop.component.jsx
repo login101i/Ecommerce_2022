@@ -10,7 +10,7 @@ import {
 
 import "./shop.styles.scss";
 
-import { fetchCollectionsStart } from "../../redux/shop/shop.sagas";
+import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import { CollectionsOverviewContainer } from "../../components/collections-overview/collections-verview.container";
 import { CollectionsContainer } from "../category/collection.container";
 export class ShopPage extends Component {
@@ -21,7 +21,7 @@ export class ShopPage extends Component {
   }
 
   render() {
-    const { match, } = this.props;
+    const { match } = this.props;
 
     return (
       <div className="shop-page">

@@ -13,16 +13,17 @@ import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-upp/sign-in-sign-u
 import { CheckoutHOC } from "./pages/checkout/checkout.component";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 
 class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-
+    const { checkUserSession } = this.props;
+    checkUserSession();
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
     //   if (userAuth) {
     //     const userRef = await createUserProfileDocument(userAuth);
-
     //     userRef.onSnapshot((snapShot) => {
     //       setCurrentUser({
     //         id: snapShot.id,
@@ -71,7 +72,8 @@ class App extends Component {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
-
-
-export const AppHOC = connect(mapStateToProps)(App);
+export const AppHOC = connect(mapStateToProps, mapDispatchToProps)(App);

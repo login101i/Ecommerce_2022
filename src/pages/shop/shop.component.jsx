@@ -10,16 +10,16 @@ import {
 
 import "./shop.styles.scss";
 
-import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
+import { fetchCollectionsStart } from "../../redux/shop/shop.sagas";
 import { CollectionsOverviewContainer } from "../../components/collections-overview/collections-verview.container";
 import { CollectionsContainer } from "../category/collection.container";
-
-
 export class ShopPage extends Component {
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionsStart } = this.props;
+
+    fetchCollectionsStart();
   }
+
   render() {
     const { match, } = this.props;
 
@@ -41,7 +41,7 @@ export class ShopPage extends Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 export const ShopHOC = connect(null, mapDispatchToProps)(ShopPage);

@@ -9,22 +9,15 @@ import "./App.css";
 import { ShopHOC } from "./pages/shop/shop.component.jsx";
 import { HeaderHOC } from "./components/header/header.component";
 import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-upp/sign-in-sign-upp.component";
-import {
-  auth,
-  createUserProfileDocument,
-  addCollectionAndDocuments
-} from "./firebase/firebase.utils";
+
 import { CheckoutHOC } from "./pages/checkout/checkout.component";
 
-import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { selectCollectionsForOverview } from "./redux/shop/shop-selector";
 
 class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser, currentUser } = this.props;
 
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
     //   if (userAuth) {
@@ -79,8 +72,6 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
-});
 
-export const AppHOC = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export const AppHOC = connect(mapStateToProps)(App);

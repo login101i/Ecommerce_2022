@@ -2,11 +2,9 @@ import React from "react";
 import { CollectionItemHOC } from "../../components/collection-item/collection-item.component";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop-selector";
-import { createStructuredSelector } from "reselect";
 
 import "./collection.styles.scss";
 export const CollectionPage = ({ match, collection }) => {
-  console.log("🚀 ~---------------------------~ colle ctions", collection);
 
   const { title, items } = collection;
   return (

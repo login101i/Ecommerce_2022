@@ -17,7 +17,6 @@ import {
   createUserProfileDocument,
   getCurrentUser
 } from "../../firebase/firebase.utils";
-import { useTransition } from "react";
 
 // share code
 export function* getSnapshotFromUserAuth(user, additionalData) {

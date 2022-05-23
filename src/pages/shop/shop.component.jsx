@@ -1,11 +1,6 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import {
-  selectIsCollectionFetching,
-  selectIsCollectionsLoaded
-} from "../../redux/shop/shop-selector";
 
 
 import "./shop.styles.scss";
@@ -13,15 +8,12 @@ import "./shop.styles.scss";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import { CollectionsOverviewContainer } from "../../components/collections-overview/collections-verview.container";
 import { CollectionsContainer } from "../category/collection.container";
-export class ShopPage extends Component {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
+const  ShopPage =({match, fetchCollectionsStart})=> {
 
-    fetchCollectionsStart();
-  }
 
-  render() {
-    const { match } = this.props;
+ useEffect(()=>{
+  fetchCollectionsStart()
+ }, [fetchCollectionsStart])
 
     return (
       <div className="shop-page">
@@ -37,7 +29,7 @@ export class ShopPage extends Component {
       </div>
     );
   }
-}
+
 
 
 const mapDispatchToProps = (dispatch) => ({

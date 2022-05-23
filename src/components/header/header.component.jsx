@@ -1,7 +1,6 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
 import { ReactComponent as Logo } from "../../asssets/crown.svg";
-import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { CartIconHOC } from "../cart-icon/cart-icon";
 import { CartDropdownHOC } from "../cart-dropdown/cart-dropdown.component";

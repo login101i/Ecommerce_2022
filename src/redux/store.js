@@ -4,7 +4,6 @@ import { persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 
 import { persistReducerStorage } from "./root.reducer";
-import { fetchCollectionsAsync } from "./shop/shop.sagas";
 import { rootSaga } from "./root.saga";
 
 const sagaMiddleware = createSagaMiddleware();

@@ -53,4 +53,16 @@
       z-index: 11;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 46vw;
+
+    &:hover {
+      opacity: 0.99;
+    }
+
+    .collection-button {
+      display:block;
+    }
+  }
 }

@@ -11,7 +11,7 @@ import {
 
 import "./checkout.styles.scss";
 
-export const CheckoutPage = ({ cartItems, total }) => {
+ const CheckoutPage = ({ cartItems, total }) => {
   console.log(
     "🚀 ~ file: checkout.component.jsx ~ line 15 ~ CheckoutPage ~ total",
     total
@@ -54,4 +54,4 @@ const mapStateToProps = createStructuredSelector({
   total: selectCartTotal
 });
 
-export const CheckoutHOC = connect(mapStateToProps)(CheckoutPage);
+export default  connect(mapStateToProps)(CheckoutPage);

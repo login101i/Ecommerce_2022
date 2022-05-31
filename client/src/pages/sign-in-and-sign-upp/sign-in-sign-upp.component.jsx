@@ -5,9 +5,11 @@ import { SignUpHOC } from "../../components/sign-up.jsx/sign-up.component";
 
 import "./sign-in-and-sign-upp.styles.scss";
 
-export const SignInAndSignUpPage = () => (
+ const SignInAndSignUpPage = () => (
   <div className="sign-in-and-sign-up">
     <SignInHOC />
     <SignUpHOC />
   </div>
 );
+
+export default SignInAndSignUpPage

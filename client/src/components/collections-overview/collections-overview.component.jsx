@@ -8,9 +8,10 @@ import { selectCollectionsForOverview } from "../../redux/shop/shop-selector";
 import "./collections-overview.styles.scss";
 
 export const CollectionsOverview = ({ collections }) => {
-console.log("🚀 ~ file: collections-overview.component.jsx ~ line 11 ~ CollectionsOverview ~ collections", collections)
-
- 
+  console.log(
+    "🚀 ~ file: collections-overview.component.jsx ~ line 11 ~ CollectionsOverview ~ collections",
+    collections
+  );
 
   return (
     <div className="collection-overview">
@@ -24,5 +25,4 @@ const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForOverview
 });
 
-export const CollectionsOverviewHOC =
-  connect(mapStateToProps)(CollectionsOverview);
+export default connect(mapStateToProps)(CollectionsOverview);

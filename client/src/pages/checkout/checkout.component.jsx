@@ -12,10 +12,7 @@ import {
 import "./checkout.styles.scss";
 
  const CheckoutPage = ({ cartItems, total }) => {
-  console.log(
-    "🚀 ~ file: checkout.component.jsx ~ line 15 ~ CheckoutPage ~ total",
-    total
-  );
+ 
   return (
     <div className="checkout-page">
       <div className="checkout-header">

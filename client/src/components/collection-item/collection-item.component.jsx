@@ -3,6 +3,7 @@ import { CustomButton } from "../custom-button/custom-button.component";
 import "./collection-item.styles.scss";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
+import { updateCartInFirebase } from "../../redux/cart/cart.sagas";
 
 export const CollectionItem = ({ item, addItem }) => {
   const { imageUrl, name, price } = item;
@@ -20,7 +21,12 @@ export const CollectionItem = ({ item, addItem }) => {
         <span className="price">{price}</span>
       </div>
       <div className="collection-button">
-        <CustomButton inverted onClick={() => addItem(item)}>
+        <CustomButton
+          inverted
+          onClick={() => {
+            addItem(item);
+          }}
+        >
           Add to cart
         </CustomButton>
       </div>
